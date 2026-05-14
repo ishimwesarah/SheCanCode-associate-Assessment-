@@ -21,6 +21,28 @@ It also includes fraud detection (same key, different body), in‑flight request
 
 ---
 
+## 🔄 Flowchart
+The diagram below illustrates how a client request flows through the Express server, the idempotency middleware, and the in‑memory store before reaching the payment processor and returning a response.
+
+```markdown
+Client
+   |
+   v
+[Express Server]
+   |
+   v
+[Idempotency Middleware] ---> [In-Memory Map Store]
+   |                               |
+   |                               v
+   |                        Cached Response
+   v
+Payment Processing (2s delay)
+   |
+   v
+Response to Client
+
+```
+
 ## Setup Instructions
 ### Prerequisites
 - Node.js v18+
